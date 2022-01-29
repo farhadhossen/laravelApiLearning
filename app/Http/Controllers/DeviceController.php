@@ -9,19 +9,29 @@ class DeviceController extends Controller
 {
 
 
-    function update(Request $request){
+    // function update(Request $request){
 
-        $device = Device::find($request->id);
-        // $device->name = $request->name;
-        $device->member_id = $request->member_id;
-        $result = $device->save();
+    //     $device = Device::find($request->id);
+    //     // $device->name = $request->name;
+    //     $device->member_id = $request->member_id;
+    //     $result = $device->save();
 
-        if($result){
-            return ["result"=>"Done"];
+    //     if($result){
+    //         return ["result"=>"Done"];
+    //     }else{
+    //         return ["result"=>"Failed"];
+    //     }
+    //     // return ["result"=>"inserted"];
+    // }
+
+    function search($name){
+        $result = Device::where("name", "like","%".$name."%")->get();
+
+        if(count($result)){
+            return $result;
         }else{
-            return ["result"=>"Failed"];
+            return ["Result"=>"No Data Found"];
         }
-        // return ["result"=>"inserted"];
     }
 
 }
