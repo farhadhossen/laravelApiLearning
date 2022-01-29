@@ -8,10 +8,10 @@ use App\Models\Device;
 class DeviceController extends Controller
 {
     //
-    function list($id)
+    function list($id=null)
     {
 
         ///model create korte hobe, database create korte hobe age'
-        return Device::find($id);
+        return $id?Device::find($id):Device::all();
     }
 }
