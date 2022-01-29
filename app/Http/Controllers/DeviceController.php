@@ -18,6 +18,9 @@ class DeviceController extends Controller
     function getListByName($name=null)
     {
 
-        return $name?Device::where('name',$name)->first():Device::all();
+        //return $name?Device::where('name',$name)->get():Device::all(); //get as like array
+        // return $name?Device::where('name',$name)->first():Device::all(); //get only one value
+
+        return $name?Device::where('name',$name)->get():Device::Select('name')->get(); //select use for get only get specific value
     }
 }
