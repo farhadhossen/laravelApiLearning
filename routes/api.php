@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Route::post("add",[DeviceController::class,'add']);
 
-Route::post("add",[DeviceController::class,'addDevice']);
+Route::put("update",[DeviceController::class,'update']);
 
 
 
