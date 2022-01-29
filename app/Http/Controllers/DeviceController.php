@@ -7,17 +7,23 @@ use App\Models\Device;
 
 class DeviceController extends Controller
 {
-    //
-    // function list($id=null)
-    // {
 
-    //     ///model create korte hobe, database create korte hobe age'
-    //     return $id?Device::find($id):Device::all();
-    // }
 
-    function getListByName($name=null)
+    function add(request $request)
     {
+        $device = new Device;
+        $device -> name = $request->name;
+        $device -> member_id = $request->member_id;
+        $result = $device -> save();
 
-        return $name?Device::where('name',$name)->first():Device::all();
+        if($result){
+            return ["Result" => "Data has been saved"];
+        }
+        else{
+            return ["Result" => "Data has not been saved"];
+        }
+
+        
     }
+
 }
