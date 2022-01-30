@@ -9,30 +9,30 @@ class DeviceController extends Controller
 {
 
 
-    // function update(Request $request){
+    function deleteSingleData($id){
+        //$result = Device::findOrFail($id)->delete(); //it  also working 
 
-    //     $device = Device::find($request->id);
-    //     // $device->name = $request->name;
-    //     $device->member_id = $request->member_id;
-    //     $result = $device->save();
+        $device = Device::find($id);
 
-    //     if($result){
-    //         return ["result"=>"Done"];
-    //     }else{
-    //         return ["result"=>"Failed"];
-    //     }
-    //     // return ["result"=>"inserted"];
-    // }
+        if(!$device){
+            return ["Result"=>"$id id not found"];
+        }
+    
+        
+            $result = $device ;
 
-    // function search($name){
-    //     $result = Device::where("name", "like","%".$name."%")->get();
+            if($result){
+                return ["Result"=>"$id id deleted"];
+            }
+            else{
+                return ["Result"=>"$id id deleted failed"];
+            }
 
-    //     if(count($result)){
-    //         return $result;
-    //     }else{
-    //         return ["Result"=>"No Data Found"];
-    //     }
-    // }
+            
+       
+        
+        
+    }
 
     function delete($id){
 
@@ -54,4 +54,55 @@ class DeviceController extends Controller
        
     }
 
+    function multipleDelete($data){
+
+        $deleteStatus = ["Result"=>""];
+
+        foreach($data as $id) 
+        { 
+            $device = Device::find($id);
+            if(!$device){
+                $deleteStatus = ["Result"=>"$id id not found"];
+                continue;
+            }
+           $data->delete();
+           $deleteStatus = ["Result"=>"$id id deleted"];
+        }
+
+        return $deleteStatus;
+
+        // $count = 0;
+
+        // foreach($data as $id){
+
+
+        //     delete2($id);            
+
+        // }
+    }
+
+
+
+}
+
+function delete2($id){
+
+    $device = Device::find($id);
+
+    return ["Result"=> "$device"];
+
+    // if(!$device){
+    //    // continue;
+    // }
+
+    // $result = $device->delete();
+
+    // if($result){
+    //     return ["Result"=>"Deleted"];
+    // }
+    // else{
+    //     return ["Result"=>"Failed"];
+    // }
+
+   
 }
