@@ -24,6 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get("search/{name}",[DeviceController::class,'search']);
 Route::delete("deleteSingleData/{id}",[DeviceController::class,'deleteSingleData']);
 
+Route::delete("deleteMultipleData/{ids}",[DeviceController::class,'deleteMultipleData']);
+
 
 
 

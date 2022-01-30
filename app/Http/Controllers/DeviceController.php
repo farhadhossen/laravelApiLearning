@@ -82,6 +82,16 @@ class DeviceController extends Controller
     }
 
 
+    ///multipleDelete
+    function deleteMultipleData($ids){
+        $ids = explode(",",$ids);
+        $result = Device::whereIn('id',$ids)->delete();
+        return ["Result"=>"deleted "];
+
+
+    }
+
+
 
 }
 
