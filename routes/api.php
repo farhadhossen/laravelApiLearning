@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,8 @@ Route::get("search/{name}",[DeviceController::class,'search']);
 
 
 Route::post("checkValidation",[DeviceController::class,'checkValidation']);
+
+Route::apiResource("member", MemberController::class);
 
 
 
