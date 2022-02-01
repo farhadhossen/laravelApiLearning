@@ -11,6 +11,16 @@ class DeviceController extends Controller
 {
 
 
+    function search($name){
+        $result = Device::where("name", "like","%".$name."%")->get();
+
+        if(count($result)){
+            return $result;
+        }else{
+            return ["Result"=>"No Data Found"];
+        }
+    }
+
    
     function checkValidation(Request $request){
 
