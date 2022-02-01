@@ -22,9 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Route::post("add",[DeviceController::class,'add']);
 
 Route::get("search/{name}",[DeviceController::class,'search']);
-Route::delete("deleteSingleData/{id}",[DeviceController::class,'deleteSingleData']);
 
-Route::delete("deleteMultipleData/{ids}",[DeviceController::class,'deleteMultipleData']);
+
+Route::post("checkValidation",[DeviceController::class,'checkValidation']);
+
 
 
 

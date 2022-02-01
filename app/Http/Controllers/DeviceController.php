@@ -2,117 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Device;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class DeviceController extends Controller
 {
 
 
-    function deleteSingleData($id){
-        //$result = Device::findOrFail($id)->delete(); //it  also working 
-
-        $device = Device::find($id);
-
-        if(!$device){
-            return ["Result"=>"$id id not found"];
-        }
-    
-        
-            $result = $device ;
-
-            if($result){
-                return ["Result"=>"$id id deleted"];
-            }
-            else{
-                return ["Result"=>"$id id deleted failed"];
-            }
-
-            
-       
-        
-        
-    }
-
-    function delete($id){
-
-        $device = Device::find($id);
-
-        if(!$device){
-            return ["Result"=>"Not Found"];
-        }
-
-        $result = $device->delete();
-
-        if($result){
-            return ["Result"=>"Deleted"];
-        }
-        else{
-            return ["Result"=>"Failed"];
-        }
-
-       
-    }
-
-    function multipleDelete($data){
-
-        $deleteStatus = ["Result"=>""];
-
-        foreach($data as $id) 
-        { 
-            $device = Device::find($id);
-            if(!$device){
-                $deleteStatus = ["Result"=>"$id id not found"];
-                continue;
-            }
-           $data->delete();
-           $deleteStatus = ["Result"=>"$id id deleted"];
-        }
-
-        return $deleteStatus;
-
-        // $count = 0;
-
-        // foreach($data as $id){
-
-
-        //     delete2($id);            
-
-        // }
-    }
-
-
-    ///multipleDelete
-    function deleteMultipleData($ids){
-        $ids = explode(",",$ids);
-        $result = Device::whereIn('id',$ids)->delete();
-        return ["Result"=>"deleted "];
-
-
-    }
-
-
-
-}
-
-function delete2($id){
-
-    $device = Device::find($id);
-
-    return ["Result"=> "$device"];
-
-    // if(!$device){
-    //    // continue;
-    // }
-
-    // $result = $device->delete();
-
-    // if($result){
-    //     return ["Result"=>"Deleted"];
-    // }
-    // else{
-    //     return ["Result"=>"Failed"];
-    // }
-
    
+    function checkValidation(Request $request){
+
+        $rules = array(
+            "member_id"=>"required",
+        );
+
+        $validator = Validator::make($request->all(),$rules);
+        
+        if($validator->fails()) {
+                return $validator->errors();
+        }else{
+                $device = new Device;
+                $device->name=$request->name;
+                $device->member_id=$request->member_id;
+
+                return ["result"=>"saved"];
+
+        }
+
+
+        return ["x"=>"y"];
+        
+
+    }
+
+
 }
+
