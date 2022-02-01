@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\MemberController;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,6 +28,9 @@ Route::get("search/{name}",[DeviceController::class,'search']);
 Route::post("checkValidation",[DeviceController::class,'checkValidation']);
 
 Route::apiResource("member", MemberController::class);
+
+
+Route::post("login",[UserController::class,'index']);
 
 
 
