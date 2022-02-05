@@ -14,4 +14,9 @@ class DeviceController extends Controller
         ///model create korte hobe, database create korte hobe age'
         return device::all();
     }
+
+    function getNestedJson(){
+        $res = Device::with('getMember:member_id');
+        return $res->Select(['id','name','member_id'])->get();
+      }
 }
