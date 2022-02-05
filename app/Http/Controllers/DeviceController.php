@@ -8,15 +8,13 @@ use App\Models\Device;
 class DeviceController extends Controller
 {
     //
-    function list()
-    {
 
-        ///model create korte hobe, database create korte hobe age'
-        return device::all();
-    }
 
     function getNestedJson(){
-        $res = Device::with('getMember:member_id');
-        return $res->Select(['id','name','member_id'])->get();
+        $res = Device::with('getMember:member_id'); //filter from in herited
+        return $res->Select(['id','name','member_id'])->get(); //filter from maain
       }
+
+
+
 }
