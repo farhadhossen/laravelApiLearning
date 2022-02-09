@@ -25,6 +25,8 @@ Route::get("list",[DeviceController::class,'list']);
 
 Route::get("getNestedJson",[DeviceController::class,'getNestedJson']);
 
+Route::get("getIndividual",[DeviceController::class,'getIndividual']);
+
 Route::post("upload",[FileController::class,'upload']);
 
 Route::post('productadd',[ProductController::class,'productadd']);
